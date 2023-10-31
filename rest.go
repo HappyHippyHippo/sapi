@@ -19,14 +19,14 @@ const (
 	// module instances registered in the application container.
 	RestContainerID = slate.ContainerID + ".rest"
 
-	// RestEngineContainerID @todo doc
-	RestEngineContainerID = RestContainerID + ".engine"
-
 	// RestEndpointRegisterTag @todo doc
 	RestEndpointRegisterTag = RestContainerID + ".endpoints"
 
 	// RestAllEndpointRegistersContainerID @todo doc
 	RestAllEndpointRegistersContainerID = RestEndpointRegisterTag + ".all"
+
+	// RestProcessContainerID @todo doc.
+	RestProcessContainerID = RestContainerID + ".process"
 
 	// RestLoaderContainerID @todo doc.
 	RestLoaderContainerID = RestContainerID + ".loader"
@@ -251,9 +251,20 @@ func (l *RestLoader) Load() error {
 // ----------------------------------------------------------------------------
 
 // RestServiceRegister defines the REST services provider instance.
-type RestServiceRegister struct{}
+type RestServiceRegister struct {
+	slate.ServiceRegister
+}
 
 var _ slate.ServiceProvider = &RestServiceRegister{}
+
+// NewRestServiceRegister will generate a new registry instance
+func NewRestServiceRegister(
+	app ...*slate.App,
+) *RestServiceRegister {
+	return &RestServiceRegister{
+		ServiceRegister: *slate.NewServiceRegister(app...),
+	}
+}
 
 // Provide will register the REST section instances in the
 // application container.
@@ -264,9 +275,9 @@ func (sr RestServiceRegister) Provide(
 	if container == nil {
 		return errNilPointer("container")
 	}
-	_ = container.Add(RestEngineContainerID, func() RestEngine { return gin.New() })
 	_ = container.Add(RestAllEndpointRegistersContainerID, sr.getEndpointRegisters)
-	_ = container.Add(RestContainerID, NewRestProcess, slate.WatchdogProcessTag)
+	_ = container.Add(RestProcessContainerID, NewRestProcess, slate.WatchdogProcessTag)
+	_ = container.Add(RestContainerID, func() RestEngine { return gin.New() })
 	_ = container.Add(RestLoaderContainerID, NewRestLoader)
 	return nil
 }
