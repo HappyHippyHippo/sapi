@@ -275,9 +275,9 @@ func (sr RestServiceRegister) Provide(
 	if container == nil {
 		return errNilPointer("container")
 	}
-	_ = container.Add(RestAllEndpointRegistersContainerID, sr.getEndpointRegisters)
-	_ = container.Add(RestProcessContainerID, NewRestProcess, slate.WatchdogProcessTag)
+	_ = container.Add(RestAllEndpointRegistersContainerID, sr.getEndpointRegisters(container))
 	_ = container.Add(RestContainerID, func() RestEngine { return gin.New() })
+	_ = container.Add(RestProcessContainerID, NewRestProcess, slate.WatchdogProcessTag)
 	_ = container.Add(RestLoaderContainerID, NewRestLoader)
 	return nil
 }
@@ -315,18 +315,20 @@ func (RestServiceRegister) getLoader(
 
 func (RestServiceRegister) getEndpointRegisters(
 	container *slate.ServiceContainer,
-) []RestEndpointRegister {
-	// retrieve the strategies entries
-	entries, e := container.Tag(RestEndpointRegisterTag)
-	if e != nil {
-		panic(e)
-	}
-	// type check the retrieved strategies
-	var registers []RestEndpointRegister
-	for _, entry := range entries {
-		if instance, ok := entry.(RestEndpointRegister); ok {
-			registers = append(registers, instance)
+) func() []RestEndpointRegister {
+	return func() []RestEndpointRegister {
+		// retrieve the strategies entries
+		entries, e := container.Tag(RestEndpointRegisterTag)
+		if e != nil {
+			panic(e)
 		}
+		// type check the retrieved strategies
+		var registers []RestEndpointRegister
+		for _, entry := range entries {
+			if instance, ok := entry.(RestEndpointRegister); ok {
+				registers = append(registers, instance)
+			}
+		}
+		return registers
 	}
-	return registers
 }
