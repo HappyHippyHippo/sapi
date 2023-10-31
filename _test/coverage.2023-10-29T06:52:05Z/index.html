@@ -1,0 +1,454 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>sapi: Go Coverage Report</title>
+		<style>
+			body {
+				background: black;
+				color: rgb(80, 80, 80);
+			}
+			body, pre, #legend span {
+				font-family: Menlo, monospace;
+				font-weight: bold;
+			}
+			#topbar {
+				background: black;
+				position: fixed;
+				top: 0; left: 0; right: 0;
+				height: 42px;
+				border-bottom: 1px solid rgb(80, 80, 80);
+			}
+			#content {
+				margin-top: 50px;
+			}
+			#nav, #legend {
+				float: left;
+				margin-left: 10px;
+			}
+			#legend {
+				margin-top: 12px;
+			}
+			#nav {
+				margin-top: 10px;
+			}
+			#legend span {
+				margin: 0 5px;
+			}
+			.cov0 { color: rgb(192, 0, 0) }
+.cov1 { color: rgb(128, 128, 128) }
+.cov2 { color: rgb(116, 140, 131) }
+.cov3 { color: rgb(104, 152, 134) }
+.cov4 { color: rgb(92, 164, 137) }
+.cov5 { color: rgb(80, 176, 140) }
+.cov6 { color: rgb(68, 188, 143) }
+.cov7 { color: rgb(56, 200, 146) }
+.cov8 { color: rgb(44, 212, 149) }
+.cov9 { color: rgb(32, 224, 152) }
+.cov10 { color: rgb(20, 236, 155) }
+
+		</style>
+	</head>
+	<body>
+		<div id="topbar">
+			<div id="nav">
+				<select id="files">
+				
+				<option value="file0">github.com/happyhippyhippo/sapi/envelope.go (100.0%)</option>
+				
+				</select>
+			</div>
+			<div id="legend">
+				<span>not tracked</span>
+			
+				<span class="cov0">no coverage</span>
+				<span class="cov1">low coverage</span>
+				<span class="cov2">*</span>
+				<span class="cov3">*</span>
+				<span class="cov4">*</span>
+				<span class="cov5">*</span>
+				<span class="cov6">*</span>
+				<span class="cov7">*</span>
+				<span class="cov8">*</span>
+				<span class="cov9">*</span>
+				<span class="cov10">high coverage</span>
+			
+			</div>
+		</div>
+		<div id="content">
+		
+		<pre class="file" id="file0" style="display: none">package sapi
+
+import (
+        "encoding/xml"
+        "fmt"
+        "strconv"
+        "strings"
+)
+
+// ----------------------------------------------------------------------------
+// envelope status error
+// ----------------------------------------------------------------------------
+
+// EnvelopeStatusError defines the structure to manipulate an error structure
+// that hold the information of an execution error and be assigned to the
+// response status error list.
+type EnvelopeStatusError struct {
+        Service  int    `json:"-" xml:"-"`
+        Endpoint int    `json:"-" xml:"-"`
+        Param    int    `json:"-" xml:"-"`
+        Error    string `json:"-" xml:"-"`
+        Code     string `json:"code" xml:"code"`
+        Message  string `json:"message" xml:"message"`
+}
+
+// NewEnvelopeStatusError instantiates a new error instance.
+func NewEnvelopeStatusError(
+        e any,
+        msg string,
+) *EnvelopeStatusError <span class="cov8" title="37">{
+        return (&amp;EnvelopeStatusError{
+                Error:   fmt.Sprintf("%v", e),
+                Message: msg,
+        }).compose()
+}</span>
+
+// SetService assigns a service code value to the error.
+func (e *EnvelopeStatusError) SetService(
+        val int,
+) *EnvelopeStatusError <span class="cov6" title="15">{
+        e.Service = val
+        return e.compose()
+}</span>
+
+// SetEndpoint assigns an endpoint code value to the error.
+func (e *EnvelopeStatusError) SetEndpoint(
+        val int,
+) *EnvelopeStatusError <span class="cov6" title="15">{
+        e.Endpoint = val
+        return e.compose()
+}</span>
+
+// SetParam assigns a parameter code value to the error.
+func (e *EnvelopeStatusError) SetParam(
+        param int,
+) *EnvelopeStatusError <span class="cov3" title="4">{
+        e.Param = param
+        return e.compose()
+}</span>
+
+// SetError assigns a error code value to the error.
+func (e *EnvelopeStatusError) SetError(
+        err any,
+) *EnvelopeStatusError <span class="cov4" title="6">{
+        e.Error = fmt.Sprintf("%v", err)
+        return e.compose()
+}</span>
+
+// SetMessage assigns a message to the error.
+func (e *EnvelopeStatusError) SetMessage(
+        msg string,
+) *EnvelopeStatusError <span class="cov1" title="1">{
+        e.Message = msg
+        return e
+}</span>
+
+// GetCode retrieves the composed code of the error
+func (e *EnvelopeStatusError) GetCode() string <span class="cov1" title="1">{
+        return e.Code
+}</span>
+
+// GetMessage retrieves the message associated to the error
+func (e *EnvelopeStatusError) GetMessage() string <span class="cov1" title="1">{
+        return e.Message
+}</span>
+
+func (e *EnvelopeStatusError) compose() *EnvelopeStatusError <span class="cov10" title="77">{
+        cb := strings.Builder{}
+        // compose the service section of the code
+        if e.Service != 0 </span><span class="cov8" title="30">{
+                cb.WriteString(fmt.Sprintf("s:%d", e.Service))
+        }</span>
+        // compose the endpoint section of the code
+        <span class="cov10" title="77">if e.Endpoint != 0 </span><span class="cov7" title="22">{
+                if cb.Len() != 0 </span><span class="cov6" title="15">{
+                        cb.WriteString(".")
+                }</span>
+                <span class="cov7" title="22">cb.WriteString(fmt.Sprintf("e:%d", e.Endpoint))</span>
+        }
+        // compose the param section of the code
+        <span class="cov10" title="77">if e.Param != 0 </span><span class="cov5" title="7">{
+                if cb.Len() != 0 </span><span class="cov4" title="6">{
+                        cb.WriteString(".")
+                }</span>
+                <span class="cov5" title="7">cb.WriteString(fmt.Sprintf("p:%d", e.Param))</span>
+        }
+        // compose the error section of the code
+        <span class="cov10" title="77">if e.Error != "" </span><span class="cov10" title="77">{
+                if cb.Len() != 0 </span><span class="cov8" title="38">{
+                        cb.WriteString(".")
+                }</span>
+
+                <span class="cov10" title="77">if i, err := strconv.Atoi(e.Error); err != nil </span><span class="cov3" title="4">{
+                        cb.WriteString(e.Error)
+                }</span> else<span class="cov9" title="73"> {
+                        cb.WriteString(fmt.Sprintf("c:%d", i))
+                }</span>
+        }
+        // assign the written code string to the error code structure parameter
+        <span class="cov10" title="77">e.Code = cb.String()
+        return e</span>
+}
+
+// ----------------------------------------------------------------------------
+// envelope status error list
+// ----------------------------------------------------------------------------
+
+// EnvelopeStatusErrorList defines a type of data  that holds a list
+// of error structures.
+type EnvelopeStatusErrorList []*EnvelopeStatusError
+
+// MarshalXML serialize the error list into a xml string
+func (s EnvelopeStatusErrorList) MarshalXML(
+        e *xml.Encoder,
+        start xml.StartElement,
+) error <span class="cov3" title="3">{
+        // encode the list starting tag
+        _ = e.EncodeToken(start)
+        // iterate through all the stored error
+        for _, v := range s </span><span class="cov3" title="4">{
+                // create the iterated error starting tag name
+                name := xml.Name{Space: "", Local: "error"}
+                // encode the error instance tag with the code and message attributes
+                _ = e.EncodeToken(xml.StartElement{
+                        Name: name,
+                        Attr: []xml.Attr{
+                                {Name: xml.Name{Local: "code"}, Value: v.Code},
+                                {Name: xml.Name{Local: "message"}, Value: v.Message},
+                        },
+                })
+                // encode the terminating error tag
+                _ = e.EncodeToken(xml.EndElement{Name: name})
+        }</span>
+        // encode the terminating list tag
+        <span class="cov3" title="3">_ = e.EncodeToken(xml.EndElement{Name: start.Name})
+        _ = e.Flush()
+        return nil</span>
+}
+
+// ----------------------------------------------------------------------------
+// envelope status
+// ----------------------------------------------------------------------------
+
+// EnvelopeStatus defines the structure to manipulate a
+// response status information structure.
+type EnvelopeStatus struct {
+        Success bool                    `json:"success" xml:"success"`
+        Errors  EnvelopeStatusErrorList `json:"error" xml:"error"`
+}
+
+// NewEnvelopeStatus instantiates a new request result status structure.
+func NewEnvelopeStatus() *EnvelopeStatus <span class="cov6" title="15">{
+        return &amp;EnvelopeStatus{
+                Success: true,
+                Errors:  EnvelopeStatusErrorList{},
+        }
+}</span>
+
+// AddError append a new error to the status error list
+func (s *EnvelopeStatus) AddError(
+        e *EnvelopeStatusError,
+) *EnvelopeStatus <span class="cov7" title="20">{
+        s.Success = false
+        s.Errors = append(s.Errors, e)
+        return s
+}</span>
+
+// SetService assign a service code to all stored error.
+func (s *EnvelopeStatus) SetService(
+        val int,
+) *EnvelopeStatus <span class="cov2" title="2">{
+        for i := range s.Errors </span><span class="cov4" title="6">{
+                s.Errors[i] = s.Errors[i].SetService(val)
+        }</span>
+        <span class="cov2" title="2">return s</span>
+}
+
+// SetEndpoint assign an endpoint code to all stored error.
+func (s *EnvelopeStatus) SetEndpoint(
+        val int,
+) *EnvelopeStatus <span class="cov3" title="4">{
+        for i := range s.Errors </span><span class="cov4" title="6">{
+                s.Errors[i] = s.Errors[i].SetEndpoint(val)
+        }</span>
+        <span class="cov3" title="4">return s</span>
+}
+
+// ----------------------------------------------------------------------------
+// envelope list report
+// ----------------------------------------------------------------------------
+
+// EnvelopeListReport defines the structure of a response list report
+// containing all the request information, but also the total amount of
+// filtering records and links for the previous and next pages
+type EnvelopeListReport struct {
+        Search string `json:"search" xml:"search"`
+        Start  uint   `json:"start" xml:"start"`
+        Count  uint   `json:"count" xml:"count"`
+        Total  uint   `json:"total" xml:"total"`
+        Prev   string `json:"prev" xml:"prev"`
+        Next   string `json:"next" xml:"next"`
+}
+
+// NewEnvelopeListReport instantiates a new response list report by
+// populating the prev and next link information regarding the given
+// filtering information
+func NewEnvelopeListReport(
+        search string,
+        start,
+        count,
+        total uint,
+) *EnvelopeListReport <span class="cov5" title="10">{
+        // store the prev URL query parameters if the start value
+        // is greater than zero
+        prev := ""
+        if start &gt; 0 </span><span class="cov5" title="9">{
+                // discover the previous page starting value
+                nstart := uint(0)
+                if count &lt; start </span><span class="cov3" title="4">{
+                        nstart = start - count
+                }</span>
+                // compose the URL prev page query parameters
+                <span class="cov5" title="9">prev = fmt.Sprintf(
+                        "?search=%s&amp;start=%d&amp;count=%d",
+                        search,
+                        nstart,
+                        count,
+                )</span>
+        }
+        // store the next URL query parameters if the total number of
+        // record are greater than the current start plus the number of
+        // presented records
+        <span class="cov5" title="10">next := ""
+        if start+count &lt; total </span><span class="cov5" title="7">{
+                // compose the URL next page query parameters
+                next = fmt.Sprintf(
+                        "?search=%s&amp;start=%d&amp;count=%d",
+                        search,
+                        start+count,
+                        count,
+                )
+        }</span>
+        // return the list report instance reference
+        <span class="cov5" title="10">return &amp;EnvelopeListReport{
+                Search: search,
+                Start:  start,
+                Count:  count,
+                Total:  total,
+                Prev:   prev,
+                Next:   next,
+        }</span>
+}
+
+// ----------------------------------------------------------------------------
+// envelope
+// ----------------------------------------------------------------------------
+
+// Envelope identifies the structure of a response structured format.
+type Envelope struct {
+        XMLName    xml.Name            `json:"-" xml:"envelope"`
+        StatusCode int                 `json:"-" xml:"-"`
+        Status     *EnvelopeStatus     `json:"status" xml:"status"`
+        ListReport *EnvelopeListReport `json:"report,omitempty" xml:"report,omitempty"`
+        Data       interface{}         `json:"data,omitempty" xml:"data,omitempty"`
+}
+
+// NewEnvelope instantiates a new response data envelope structure
+func NewEnvelope(
+        statusCode int,
+        data interface{},
+        listReport ...*EnvelopeListReport,
+) *Envelope <span class="cov5" title="10">{
+        // initialize the envelope structure
+        env := &amp;Envelope{
+                StatusCode: statusCode,
+                Status:     NewEnvelopeStatus(),
+                ListReport: nil,
+                Data:       data,
+        }
+        // assign the list report if given as argument
+        if len(listReport) &gt; 0 &amp;&amp; listReport[0] != nil </span><span class="cov2" title="2">{
+                env.ListReport = listReport[0]
+        }</span>
+        <span class="cov5" title="10">return env</span>
+}
+
+// GetStatusCode returned the stored enveloped response status code
+func (s *Envelope) GetStatusCode() int <span class="cov1" title="1">{
+        return s.StatusCode
+}</span>
+
+// SetService assign the service identifier to all stored error codes
+func (s *Envelope) SetService(
+        val int,
+) *Envelope <span class="cov1" title="1">{
+        s.Status = s.Status.SetService(val)
+        return s
+}</span>
+
+// SetEndpoint assign the endpoint identifier to all stored error codes
+func (s *Envelope) SetEndpoint(
+        val int,
+) *Envelope <span class="cov3" title="3">{
+        s.Status = s.Status.SetEndpoint(val)
+        return s
+}</span>
+
+// SetListReport assign the list report to the envelope
+func (s *Envelope) SetListReport(
+        listReport *EnvelopeListReport,
+) *Envelope <span class="cov2" title="2">{
+        s.ListReport = listReport
+        return s
+}</span>
+
+// AddError add a new error to the response envelope instance
+func (s *Envelope) AddError(
+        e *EnvelopeStatusError,
+) *Envelope <span class="cov5" title="10">{
+        s.Status = s.Status.AddError(e)
+        return s
+}</span>
+</pre>
+		
+		</div>
+	</body>
+	<script>
+	(function() {
+		var files = document.getElementById('files');
+		var visible;
+		files.addEventListener('change', onChange, false);
+		function select(part) {
+			if (visible)
+				visible.style.display = 'none';
+			visible = document.getElementById(part);
+			if (!visible)
+				return;
+			files.value = part;
+			visible.style.display = 'block';
+			location.hash = part;
+		}
+		function onChange() {
+			select(files.value);
+			window.scrollTo(0, 0);
+		}
+		if (location.hash != "") {
+			select(location.hash.substr(1));
+		}
+		if (!visible) {
+			select("file0");
+		}
+	})();
+	</script>
+</html>

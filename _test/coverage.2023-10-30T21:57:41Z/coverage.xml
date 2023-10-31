@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
+<coverage line-rate="1" branch-rate="0" lines-covered="127" lines-valid="127" branches-covered="0" branches-valid="0" complexity="0" version="" timestamp="1698703063408">
+	<packages>
+		<package name="github.com/happyhippyhippo/sapi" line-rate="1" branch-rate="0" complexity="0" line-count="127" line-hits="127">
+			<classes>
+				<class name="EnvelopeStatusErrorList" filename="envelope.go" line-rate="1" branch-rate="0" complexity="0" line-count="8" line-hits="8">
+					<methods>
+						<method name="MarshalXML" signature="" line-rate="1" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="138" hits="3"></line>
+								<line number="140" hits="3"></line>
+								<line number="142" hits="4"></line>
+								<line number="144" hits="4"></line>
+								<line number="152" hits="4"></line>
+								<line number="155" hits="3"></line>
+								<line number="156" hits="3"></line>
+								<line number="157" hits="3"></line>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="138" hits="3"></line>
+						<line number="140" hits="3"></line>
+						<line number="142" hits="4"></line>
+						<line number="144" hits="4"></line>
+						<line number="152" hits="4"></line>
+						<line number="155" hits="3"></line>
+						<line number="156" hits="3"></line>
+						<line number="157" hits="3"></line>
+					</lines>
+				</class>
+				<class name="EnvelopeStatus" filename="envelope.go" line-rate="1" branch-rate="0" complexity="0" line-count="9" line-hits="9">
+					<methods>
+						<method name="AddError" signature="" line-rate="1" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="183" hits="26"></line>
+								<line number="184" hits="26"></line>
+								<line number="185" hits="26"></line>
+							</lines>
+						</method>
+						<method name="SetService" signature="" line-rate="1" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="192" hits="2"></line>
+								<line number="193" hits="6"></line>
+								<line number="195" hits="2"></line>
+							</lines>
+						</method>
+						<method name="SetEndpoint" signature="" line-rate="1" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="202" hits="4"></line>
+								<line number="203" hits="6"></line>
+								<line number="205" hits="4"></line>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="183" hits="26"></line>
+						<line number="184" hits="26"></line>
+						<line number="185" hits="26"></line>
+						<line number="192" hits="2"></line>
+						<line number="193" hits="6"></line>
+						<line number="195" hits="2"></line>
+						<line number="202" hits="4"></line>
+						<line number="203" hits="6"></line>
+						<line number="205" hits="4"></line>
+					</lines>
+				</class>
+				<class name="Envelope" filename="envelope.go" line-rate="1" branch-rate="0" complexity="0" line-count="9" line-hits="9">
+					<methods>
+						<method name="GetStatusCode" signature="" line-rate="1" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="309" hits="1"></line>
+							</lines>
+						</method>
+						<method name="SetService" signature="" line-rate="1" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="316" hits="1"></line>
+								<line number="317" hits="1"></line>
+							</lines>
+						</method>
+						<method name="SetEndpoint" signature="" line-rate="1" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="324" hits="3"></line>
+								<line number="325" hits="3"></line>
+							</lines>
+						</method>
+						<method name="SetListReport" signature="" line-rate="1" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="332" hits="2"></line>
+								<line number="333" hits="2"></line>
+							</lines>
+						</method>
+						<method name="AddError" signature="" line-rate="1" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="340" hits="16"></line>
+								<line number="341" hits="16"></line>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="309" hits="1"></line>
+						<line number="316" hits="1"></line>
+						<line number="317" hits="1"></line>
+						<line number="324" hits="3"></line>
+						<line number="325" hits="3"></line>
+						<line number="332" hits="2"></line>
+						<line number="333" hits="2"></line>
+						<line number="340" hits="16"></line>
+						<line number="341" hits="16"></line>
+					</lines>
+				</class>
+				<class name="-" filename="envelope.go" line-rate="1" branch-rate="0" complexity="0" line-count="16" line-hits="16">
+					<methods>
+						<method name="NewEnvelopeStatusError" signature="" line-rate="1" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="31" hits="43"></line>
+							</lines>
+						</method>
+						<method name="NewEnvelopeStatus" signature="" line-rate="1" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="173" hits="24"></line>
+							</lines>
+						</method>
+						<method name="NewEnvelopeListReport" signature="" line-rate="1" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="235" hits="10"></line>
+								<line number="236" hits="10"></line>
+								<line number="238" hits="9"></line>
+								<line number="239" hits="9"></line>
+								<line number="240" hits="4"></line>
+								<line number="243" hits="9"></line>
+								<line number="253" hits="10"></line>
+								<line number="254" hits="10"></line>
+								<line number="256" hits="7"></line>
+								<line number="264" hits="10"></line>
+							</lines>
+						</method>
+						<method name="NewEnvelope" signature="" line-rate="1" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="294" hits="19"></line>
+								<line number="301" hits="19"></line>
+								<line number="302" hits="2"></line>
+								<line number="304" hits="19"></line>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="31" hits="43"></line>
+						<line number="173" hits="24"></line>
+						<line number="235" hits="10"></line>
+						<line number="236" hits="10"></line>
+						<line number="238" hits="9"></line>
+						<line number="239" hits="9"></line>
+						<line number="240" hits="4"></line>
+						<line number="243" hits="9"></line>
+						<line number="253" hits="10"></line>
+						<line number="254" hits="10"></line>
+						<line number="256" hits="7"></line>
+						<line number="264" hits="10"></line>
+						<line number="294" hits="19"></line>
+						<line number="301" hits="19"></line>
+						<line number="302" hits="2"></line>
+						<line number="304" hits="19"></line>
+					</lines>
+				</class>
+				<class name="EnvelopeStatusError" filename="envelope.go" line-rate="1" branch-rate="0" complexity="0" line-count="31" line-hits="31">
+					<methods>
+						<method name="SetService" signature="" line-rate="1" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="41" hits="15"></line>
+								<line number="42" hits="15"></line>
+							</lines>
+						</method>
+						<method name="SetEndpoint" signature="" line-rate="1" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="49" hits="15"></line>
+								<line number="50" hits="15"></line>
+							</lines>
+						</method>
+						<method name="SetParam" signature="" line-rate="1" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="57" hits="10"></line>
+								<line number="58" hits="10"></line>
+							</lines>
+						</method>
+						<method name="SetError" signature="" line-rate="1" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="65" hits="6"></line>
+								<line number="66" hits="6"></line>
+							</lines>
+						</method>
+						<method name="SetMessage" signature="" line-rate="1" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="73" hits="1"></line>
+								<line number="74" hits="1"></line>
+							</lines>
+						</method>
+						<method name="GetCode" signature="" line-rate="1" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="79" hits="5"></line>
+							</lines>
+						</method>
+						<method name="GetMessage" signature="" line-rate="1" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="84" hits="5"></line>
+							</lines>
+						</method>
+						<method name="compose" signature="" line-rate="1" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="88" hits="89"></line>
+								<line number="90" hits="89"></line>
+								<line number="91" hits="30"></line>
+								<line number="94" hits="89"></line>
+								<line number="95" hits="22"></line>
+								<line number="96" hits="15"></line>
+								<line number="98" hits="22"></line>
+								<line number="101" hits="89"></line>
+								<line number="102" hits="10"></line>
+								<line number="103" hits="6"></line>
+								<line number="105" hits="10"></line>
+								<line number="108" hits="89"></line>
+								<line number="109" hits="89"></line>
+								<line number="110" hits="41"></line>
+								<line number="113" hits="89"></line>
+								<line number="114" hits="4"></line>
+								<line number="116" hits="85"></line>
+								<line number="120" hits="89"></line>
+								<line number="121" hits="89"></line>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="41" hits="15"></line>
+						<line number="42" hits="15"></line>
+						<line number="49" hits="15"></line>
+						<line number="50" hits="15"></line>
+						<line number="57" hits="10"></line>
+						<line number="58" hits="10"></line>
+						<line number="65" hits="6"></line>
+						<line number="66" hits="6"></line>
+						<line number="73" hits="1"></line>
+						<line number="74" hits="1"></line>
+						<line number="79" hits="5"></line>
+						<line number="84" hits="5"></line>
+						<line number="88" hits="89"></line>
+						<line number="90" hits="89"></line>
+						<line number="91" hits="30"></line>
+						<line number="94" hits="89"></line>
+						<line number="95" hits="22"></line>
+						<line number="96" hits="15"></line>
+						<line number="98" hits="22"></line>
+						<line number="101" hits="89"></line>
+						<line number="102" hits="10"></line>
+						<line number="103" hits="6"></line>
+						<line number="105" hits="10"></line>
+						<line number="108" hits="89"></line>
+						<line number="109" hits="89"></line>
+						<line number="110" hits="41"></line>
+						<line number="113" hits="89"></line>
+						<line number="114" hits="4"></line>
+						<line number="116" hits="85"></line>
+						<line number="120" hits="89"></line>
+						<line number="121" hits="89"></line>
+					</lines>
+				</class>
+				<class name="-" filename="errors.go" line-rate="1" branch-rate="0" complexity="0" line-count="2" line-hits="2">
+					<methods>
+						<method name="errNilPointer" signature="" line-rate="1" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="17" hits="10"></line>
+							</lines>
+						</method>
+						<method name="errConversion" signature="" line-rate="1" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="25" hits="2"></line>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="17" hits="10"></line>
+						<line number="25" hits="2"></line>
+					</lines>
+				</class>
+				<class name="-" filename="validation.go" line-rate="1" branch-rate="0" complexity="0" line-count="23" line-hits="23">
+					<methods>
+						<method name="errValidationTranslatorNotFound" signature="" line-rate="1" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="61" hits="3"></line>
+							</lines>
+						</method>
+						<method name="NewValidationUniversalTranslator" signature="" line-rate="1" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="70" hits="7"></line>
+								<line number="71" hits="7"></line>
+							</lines>
+						</method>
+						<method name="NewValidationTranslator" signature="" line-rate="1" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="82" hits="5"></line>
+								<line number="83" hits="5"></line>
+								<line number="84" hits="1"></line>
+								<line number="86" hits="4"></line>
+							</lines>
+						</method>
+						<method name="NewValidationParser" signature="" line-rate="1" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="103" hits="19"></line>
+								<line number="104" hits="1"></line>
+								<line number="107" hits="18"></line>
+							</lines>
+						</method>
+						<method name="NewValidator" signature="" line-rate="1" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="304" hits="8"></line>
+								<line number="305" hits="1"></line>
+								<line number="308" hits="7"></line>
+								<line number="309" hits="1"></line>
+								<line number="312" hits="6"></line>
+								<line number="313" hits="6"></line>
+								<line number="315" hits="6"></line>
+							</lines>
+						</method>
+						<method name="@315:9" signature="" line-rate="1" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="317" hits="4"></line>
+								<line number="318" hits="1"></line>
+								<line number="321" hits="3"></line>
+								<line number="323" hits="2"></line>
+								<line number="325" hits="1"></line>
+							</lines>
+						</method>
+						<method name="NewValidationServiceRegister" signature="" line-rate="1" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="344" hits="8"></line>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="61" hits="3"></line>
+						<line number="70" hits="7"></line>
+						<line number="71" hits="7"></line>
+						<line number="82" hits="5"></line>
+						<line number="83" hits="5"></line>
+						<line number="84" hits="1"></line>
+						<line number="86" hits="4"></line>
+						<line number="103" hits="19"></line>
+						<line number="104" hits="1"></line>
+						<line number="107" hits="18"></line>
+						<line number="304" hits="8"></line>
+						<line number="305" hits="1"></line>
+						<line number="308" hits="7"></line>
+						<line number="309" hits="1"></line>
+						<line number="312" hits="6"></line>
+						<line number="313" hits="6"></line>
+						<line number="315" hits="6"></line>
+						<line number="317" hits="4"></line>
+						<line number="318" hits="1"></line>
+						<line number="321" hits="3"></line>
+						<line number="323" hits="2"></line>
+						<line number="325" hits="1"></line>
+						<line number="344" hits="8"></line>
+					</lines>
+				</class>
+				<class name="ValidationParser" filename="validation.go" line-rate="1" branch-rate="0" complexity="0" line-count="22" line-hits="22">
+					<methods>
+						<method name="Parse" signature="" line-rate="1" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="240" hits="11"></line>
+								<line number="241" hits="1"></line>
+								<line number="244" hits="10"></line>
+								<line number="245" hits="2"></line>
+								<line number="248" hits="8"></line>
+								<line number="249" hits="8"></line>
+								<line number="250" hits="8"></line>
+								<line number="251" hits="8"></line>
+								<line number="252" hits="3"></line>
+								<line number="254" hits="5"></line>
+								<line number="257" hits="5"></line>
+							</lines>
+						</method>
+						<method name="AddError" signature="" line-rate="1" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="265" hits="1"></line>
+							</lines>
+						</method>
+						<method name="convert" signature="" line-rate="1" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="272" hits="8"></line>
+								<line number="273" hits="1"></line>
+								<line number="276" hits="7"></line>
+								<line number="277" hits="7"></line>
+								<line number="278" hits="7"></line>
+								<line number="279" hits="7"></line>
+								<line number="280" hits="4"></line>
+								<line number="281" hits="4"></line>
+								<line number="282" hits="2"></line>
+								<line number="286" hits="5"></line>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="240" hits="11"></line>
+						<line number="241" hits="1"></line>
+						<line number="244" hits="10"></line>
+						<line number="245" hits="2"></line>
+						<line number="248" hits="8"></line>
+						<line number="249" hits="8"></line>
+						<line number="250" hits="8"></line>
+						<line number="251" hits="8"></line>
+						<line number="252" hits="3"></line>
+						<line number="254" hits="5"></line>
+						<line number="257" hits="5"></line>
+						<line number="265" hits="1"></line>
+						<line number="272" hits="8"></line>
+						<line number="273" hits="1"></line>
+						<line number="276" hits="7"></line>
+						<line number="277" hits="7"></line>
+						<line number="278" hits="7"></line>
+						<line number="279" hits="7"></line>
+						<line number="280" hits="4"></line>
+						<line number="281" hits="4"></line>
+						<line number="282" hits="2"></line>
+						<line number="286" hits="5"></line>
+					</lines>
+				</class>
+				<class name="ValidationServiceRegister" filename="validation.go" line-rate="1" branch-rate="0" complexity="0" line-count="7" line-hits="7">
+					<methods>
+						<method name="Provide" signature="" line-rate="1" branch-rate="0" complexity="0" line-count="0" line-hits="0">
+							<lines>
+								<line number="355" hits="6"></line>
+								<line number="356" hits="1"></line>
+								<line number="358" hits="5"></line>
+								<line number="359" hits="5"></line>
+								<line number="360" hits="5"></line>
+								<line number="361" hits="5"></line>
+								<line number="362" hits="5"></line>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="355" hits="6"></line>
+						<line number="356" hits="1"></line>
+						<line number="358" hits="5"></line>
+						<line number="359" hits="5"></line>
+						<line number="360" hits="5"></line>
+						<line number="361" hits="5"></line>
+						<line number="362" hits="5"></line>
+					</lines>
+				</class>
+			</classes>
+		</package>
+	</packages>
+	<sources>
+		<source>/Users/cdias/Projects/slate/code/sapi</source>
+	</sources>
+</coverage>
