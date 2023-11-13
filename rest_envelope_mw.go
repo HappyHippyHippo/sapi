@@ -246,6 +246,15 @@ type RestEnvelopeMwServiceRegister struct {
 
 var _ slate.ServiceProvider = &RestEnvelopeMwServiceRegister{}
 
+// NewRestEnvelopeMwServiceRegister will generate a new registry instance
+func NewRestEnvelopeMwServiceRegister(
+	app ...*slate.App,
+) *RestEnvelopeMwServiceRegister {
+	return &RestEnvelopeMwServiceRegister{
+		ServiceRegister: *slate.NewServiceRegister(app...),
+	}
+}
+
 // Provide will add to the container a new file system adapter instance.
 func (RestEnvelopeMwServiceRegister) Provide(
 	container *slate.ServiceContainer,

@@ -317,16 +317,14 @@ func (RestServiceRegister) getEndpointRegisters(
 	container *slate.ServiceContainer,
 ) func() []RestEndpointRegister {
 	return func() []RestEndpointRegister {
-		// retrieve the strategies entries
-		entries, e := container.Tag(RestEndpointRegisterTag)
-		if e != nil {
-			panic(e)
-		}
-		// type check the retrieved strategies
+		// retrieve all the endpoint registers
 		var registers []RestEndpointRegister
+		entries, _ := container.Tag(RestEndpointRegisterTag)
 		for _, entry := range entries {
-			if instance, ok := entry.(RestEndpointRegister); ok {
-				registers = append(registers, instance)
+			// type check the retrieved service
+			register, ok := entry.(RestEndpointRegister)
+			if ok {
+				registers = append(registers, register)
 			}
 		}
 		return registers

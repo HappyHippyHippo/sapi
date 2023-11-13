@@ -541,7 +541,7 @@ func Test_Validator(t *testing.T) {
 }
 
 func Test_ValidationServiceRegister(t *testing.T) {
-	t.Run("NewWatchdogServiceRegister", func(t *testing.T) {
+	t.Run("NewValidationServiceRegister", func(t *testing.T) {
 		t.Run("create", func(t *testing.T) {
 			if NewValidationServiceRegister() == nil {
 				t.Error("didn't returned a valid reference")
@@ -585,165 +585,165 @@ func Test_ValidationServiceRegister(t *testing.T) {
 				t.Errorf("no trnalsator creator : %v", sut)
 			}
 		})
-	})
 
-	t.Run("retrieving universal translator", func(t *testing.T) {
-		ctrl := gomock.NewController(t)
-		defer ctrl.Finish()
+		t.Run("retrieving universal translator", func(t *testing.T) {
+			ctrl := gomock.NewController(t)
+			defer ctrl.Finish()
 
-		container := slate.NewServiceContainer()
-		_ = NewValidationServiceRegister().Provide(container)
+			container := slate.NewServiceContainer()
+			_ = NewValidationServiceRegister().Provide(container)
 
-		sut, e := container.Get(ValidationUniversalTranslatorContainerID)
-		switch {
-		case e != nil:
-			t.Errorf("unexpected error (%v)", e)
-		case sut == nil:
-			t.Error("didn't returned a reference to service")
-		default:
-			switch sut.(type) {
-			case *ut.UniversalTranslator:
+			sut, e := container.Get(ValidationUniversalTranslatorContainerID)
+			switch {
+			case e != nil:
+				t.Errorf("unexpected error (%v)", e)
+			case sut == nil:
+				t.Error("didn't returned a reference to service")
 			default:
-				t.Error("didn't returned the universal translator")
+				switch sut.(type) {
+				case *ut.UniversalTranslator:
+				default:
+					t.Error("didn't returned the universal translator")
+				}
 			}
-		}
-	})
-
-	t.Run("error retrieving universal translator when retrieving translator", func(t *testing.T) {
-		ctrl := gomock.NewController(t)
-		defer ctrl.Finish()
-
-		expected := fmt.Errorf("error message")
-		container := slate.NewServiceContainer()
-		_ = NewValidationServiceRegister().Provide(container)
-		_ = container.Add(ValidationUniversalTranslatorContainerID, func() (*ut.UniversalTranslator, error) {
-			return nil, expected
 		})
 
-		if _, e := container.Get(ValidationTranslatorContainerID); e == nil {
-			t.Error("didn't returned the expected error")
-		} else if !errors.Is(e, slate.ErrServiceContainer) {
-			t.Errorf("(%v) when expecting (%v)", e, slate.ErrServiceContainer)
-		}
-	})
+		t.Run("error retrieving universal translator when retrieving translator", func(t *testing.T) {
+			ctrl := gomock.NewController(t)
+			defer ctrl.Finish()
 
-	t.Run("retrieving translator", func(t *testing.T) {
-		ctrl := gomock.NewController(t)
-		defer ctrl.Finish()
+			expected := fmt.Errorf("error message")
+			container := slate.NewServiceContainer()
+			_ = NewValidationServiceRegister().Provide(container)
+			_ = container.Add(ValidationUniversalTranslatorContainerID, func() (*ut.UniversalTranslator, error) {
+				return nil, expected
+			})
 
-		container := slate.NewServiceContainer()
-		_ = NewValidationServiceRegister().Provide(container)
-
-		sut, e := container.Get(ValidationTranslatorContainerID)
-		switch {
-		case e != nil:
-			t.Errorf("unexpected error (%v)", e)
-		case sut == nil:
-			t.Error("didn't returned a reference to service")
-		default:
-			switch sut.(type) {
-			case ut.Translator:
-			default:
-				t.Error("didn't returned the translator")
+			if _, e := container.Get(ValidationTranslatorContainerID); e == nil {
+				t.Error("didn't returned the expected error")
+			} else if !errors.Is(e, slate.ErrServiceContainer) {
+				t.Errorf("(%v) when expecting (%v)", e, slate.ErrServiceContainer)
 			}
-		}
-	})
-
-	t.Run("error retrieving translator when retrieving parser", func(t *testing.T) {
-		ctrl := gomock.NewController(t)
-		defer ctrl.Finish()
-
-		expected := fmt.Errorf("error message")
-		container := slate.NewServiceContainer()
-		_ = NewValidationServiceRegister().Provide(container)
-		_ = container.Add(ValidationTranslatorContainerID, func() (ut.Translator, error) {
-			return nil, expected
 		})
 
-		if _, e := container.Get(ValidationParserContainerID); e == nil {
-			t.Error("didn't returned the expected error")
-		} else if !errors.Is(e, slate.ErrServiceContainer) {
-			t.Errorf("(%v) when expecting (%v)", e, slate.ErrServiceContainer)
-		}
-	})
+		t.Run("retrieving translator", func(t *testing.T) {
+			ctrl := gomock.NewController(t)
+			defer ctrl.Finish()
 
-	t.Run("retrieving parser", func(t *testing.T) {
-		ctrl := gomock.NewController(t)
-		defer ctrl.Finish()
+			container := slate.NewServiceContainer()
+			_ = NewValidationServiceRegister().Provide(container)
 
-		container := slate.NewServiceContainer()
-		_ = NewValidationServiceRegister().Provide(container)
-
-		sut, e := container.Get(ValidationParserContainerID)
-		switch {
-		case e != nil:
-			t.Errorf("unexpected error (%v)", e)
-		case sut == nil:
-			t.Error("didn't returned a reference to service")
-		default:
-			switch sut.(type) {
-			case *ValidationParser:
+			sut, e := container.Get(ValidationTranslatorContainerID)
+			switch {
+			case e != nil:
+				t.Errorf("unexpected error (%v)", e)
+			case sut == nil:
+				t.Error("didn't returned a reference to service")
 			default:
-				t.Error("didn't returned the parser")
+				switch sut.(type) {
+				case ut.Translator:
+				default:
+					t.Error("didn't returned the translator")
+				}
 			}
-		}
-	})
-
-	t.Run("error retrieving translator when retrieving validator", func(t *testing.T) {
-		ctrl := gomock.NewController(t)
-		defer ctrl.Finish()
-
-		expected := fmt.Errorf("error message")
-		container := slate.NewServiceContainer()
-		_ = NewValidationServiceRegister().Provide(container)
-		_ = container.Add(ValidationTranslatorContainerID, func() (ut.Translator, error) {
-			return nil, expected
 		})
 
-		if _, e := container.Get(ValidationContainerID); e == nil {
-			t.Error("didn't returned the expected error")
-		} else if !errors.Is(e, slate.ErrServiceContainer) {
-			t.Errorf("(%v) when expecting (%v)", e, slate.ErrServiceContainer)
-		}
-	})
+		t.Run("error retrieving translator when retrieving parser", func(t *testing.T) {
+			ctrl := gomock.NewController(t)
+			defer ctrl.Finish()
 
-	t.Run("error retrieving parser when retrieving validator", func(t *testing.T) {
-		ctrl := gomock.NewController(t)
-		defer ctrl.Finish()
+			expected := fmt.Errorf("error message")
+			container := slate.NewServiceContainer()
+			_ = NewValidationServiceRegister().Provide(container)
+			_ = container.Add(ValidationTranslatorContainerID, func() (ut.Translator, error) {
+				return nil, expected
+			})
 
-		expected := fmt.Errorf("error message")
-		container := slate.NewServiceContainer()
-		_ = NewValidationServiceRegister().Provide(container)
-		_ = container.Add(ValidationParserContainerID, func() (*ValidationParser, error) {
-			return nil, expected
+			if _, e := container.Get(ValidationParserContainerID); e == nil {
+				t.Error("didn't returned the expected error")
+			} else if !errors.Is(e, slate.ErrServiceContainer) {
+				t.Errorf("(%v) when expecting (%v)", e, slate.ErrServiceContainer)
+			}
 		})
 
-		if _, e := container.Get(ValidationContainerID); e == nil {
-			t.Error("didn't returned the expected error")
-		} else if !errors.Is(e, slate.ErrServiceContainer) {
-			t.Errorf("(%v) when expecting (%v)", e, slate.ErrServiceContainer)
-		}
-	})
+		t.Run("retrieving parser", func(t *testing.T) {
+			ctrl := gomock.NewController(t)
+			defer ctrl.Finish()
 
-	t.Run("retrieving validator", func(t *testing.T) {
-		ctrl := gomock.NewController(t)
-		defer ctrl.Finish()
+			container := slate.NewServiceContainer()
+			_ = NewValidationServiceRegister().Provide(container)
 
-		container := slate.NewServiceContainer()
-		_ = NewValidationServiceRegister().Provide(container)
-
-		sut, e := container.Get(ValidationContainerID)
-		switch {
-		case e != nil:
-			t.Errorf("unexpected error (%v)", e)
-		case sut == nil:
-			t.Error("didn't returned a reference to service")
-		default:
-			switch sut.(type) {
-			case Validator:
+			sut, e := container.Get(ValidationParserContainerID)
+			switch {
+			case e != nil:
+				t.Errorf("unexpected error (%v)", e)
+			case sut == nil:
+				t.Error("didn't returned a reference to service")
 			default:
-				t.Error("didn't returned the validator")
+				switch sut.(type) {
+				case *ValidationParser:
+				default:
+					t.Error("didn't returned the parser")
+				}
 			}
-		}
+		})
+
+		t.Run("error retrieving translator when retrieving validator", func(t *testing.T) {
+			ctrl := gomock.NewController(t)
+			defer ctrl.Finish()
+
+			expected := fmt.Errorf("error message")
+			container := slate.NewServiceContainer()
+			_ = NewValidationServiceRegister().Provide(container)
+			_ = container.Add(ValidationTranslatorContainerID, func() (ut.Translator, error) {
+				return nil, expected
+			})
+
+			if _, e := container.Get(ValidationContainerID); e == nil {
+				t.Error("didn't returned the expected error")
+			} else if !errors.Is(e, slate.ErrServiceContainer) {
+				t.Errorf("(%v) when expecting (%v)", e, slate.ErrServiceContainer)
+			}
+		})
+
+		t.Run("error retrieving parser when retrieving validator", func(t *testing.T) {
+			ctrl := gomock.NewController(t)
+			defer ctrl.Finish()
+
+			expected := fmt.Errorf("error message")
+			container := slate.NewServiceContainer()
+			_ = NewValidationServiceRegister().Provide(container)
+			_ = container.Add(ValidationParserContainerID, func() (*ValidationParser, error) {
+				return nil, expected
+			})
+
+			if _, e := container.Get(ValidationContainerID); e == nil {
+				t.Error("didn't returned the expected error")
+			} else if !errors.Is(e, slate.ErrServiceContainer) {
+				t.Errorf("(%v) when expecting (%v)", e, slate.ErrServiceContainer)
+			}
+		})
+
+		t.Run("retrieving validator", func(t *testing.T) {
+			ctrl := gomock.NewController(t)
+			defer ctrl.Finish()
+
+			container := slate.NewServiceContainer()
+			_ = NewValidationServiceRegister().Provide(container)
+
+			sut, e := container.Get(ValidationContainerID)
+			switch {
+			case e != nil:
+				t.Errorf("unexpected error (%v)", e)
+			case sut == nil:
+				t.Error("didn't returned a reference to service")
+			default:
+				switch sut.(type) {
+				case Validator:
+				default:
+					t.Error("didn't returned the validator")
+				}
+			}
+		})
 	})
 }
